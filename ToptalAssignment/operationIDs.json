@@ -1,0 +1,6 @@
+{
+  "17fd7879a164e0a56bbf305916deee23521e73b8775bb803e6bddb53d944f675": {
+    "name": "Repos",
+    "source": "query Repos {\n  organization(login: \"toptal\") {\n    __typename\n    repositories(first: 100) {\n      __typename\n      totalCount\n      nodes {\n        __typename\n        name\n        url\n        openIssues: issues(first: 1, states: OPEN) {\n          __typename\n          totalCount\n        }\n        closedIssues: issues(first: 1, states: CLOSED) {\n          __typename\n          totalCount\n        }\n        openPullRequests: pullRequests(first: 1, states: OPEN) {\n          __typename\n          totalCount\n        }\n        closedPullRequests: pullRequests(first: 1, states: CLOSED) {\n          __typename\n          totalCount\n        }\n      }\n    }\n  }\n}"
+  }
+}

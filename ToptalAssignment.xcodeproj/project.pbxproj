@@ -3,17 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		E5138A0726979C6700D15FFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5138A0626979C6700D15FFA /* AppDelegate.swift */; };
 		E5138A0926979C6700D15FFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5138A0826979C6700D15FFA /* SceneDelegate.swift */; };
-		E5138A0B26979C6700D15FFA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5138A0A26979C6700D15FFA /* ViewController.swift */; };
+		E5138A0B26979C6700D15FFA /* RepositoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5138A0A26979C6700D15FFA /* RepositoryListViewController.swift */; };
 		E5138A1026979C6900D15FFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5138A0F26979C6900D15FFA /* Assets.xcassets */; };
 		E5138A1326979C6900D15FFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5138A1126979C6900D15FFA /* LaunchScreen.storyboard */; };
 		E5138A1E26979C6900D15FFA /* ToptalAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5138A1D26979C6900D15FFA /* ToptalAssignmentTests.swift */; };
 		E5138A2926979C6A00D15FFA /* ToptalAssignmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5138A2826979C6A00D15FFA /* ToptalAssignmentUITests.swift */; };
+		E58B7A50269AFB7400A367E1 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = E58B7A4F269AFB7400A367E1 /* Apollo */; };
+		E58B7A54269B253B00A367E1 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58B7A53269B253B00A367E1 /* API.swift */; };
+		E58B7A56269B25D700A367E1 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58B7A55269B25D700A367E1 /* Network.swift */; };
+		E58B7A58269B724B00A367E1 /* RepositoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58B7A57269B724B00A367E1 /* RepositoryDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +41,7 @@
 		E5138A0326979C6700D15FFA /* ToptalAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToptalAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5138A0626979C6700D15FFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5138A0826979C6700D15FFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E5138A0A26979C6700D15FFA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E5138A0A26979C6700D15FFA /* RepositoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewController.swift; sourceTree = "<group>"; };
 		E5138A0F26979C6900D15FFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E5138A1226979C6900D15FFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E5138A1426979C6900D15FFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +51,9 @@
 		E5138A2426979C6A00D15FFA /* ToptalAssignmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToptalAssignmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5138A2826979C6A00D15FFA /* ToptalAssignmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToptalAssignmentUITests.swift; sourceTree = "<group>"; };
 		E5138A2A26979C6A00D15FFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E58B7A53269B253B00A367E1 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		E58B7A55269B25D700A367E1 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		E58B7A57269B724B00A367E1 /* RepositoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E58B7A50269AFB7400A367E1 /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,9 +105,12 @@
 		E5138A0526979C6700D15FFA /* ToptalAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				E58B7A53269B253B00A367E1 /* API.swift */,
 				E5138A0626979C6700D15FFA /* AppDelegate.swift */,
 				E5138A0826979C6700D15FFA /* SceneDelegate.swift */,
-				E5138A0A26979C6700D15FFA /* ViewController.swift */,
+				E5138A0A26979C6700D15FFA /* RepositoryListViewController.swift */,
+				E58B7A57269B724B00A367E1 /* RepositoryDetailsViewController.swift */,
+				E58B7A55269B25D700A367E1 /* Network.swift */,
 				E5138A0F26979C6900D15FFA /* Assets.xcassets */,
 				E5138A1126979C6900D15FFA /* LaunchScreen.storyboard */,
 				E5138A1426979C6900D15FFA /* Info.plist */,
@@ -141,6 +152,9 @@
 			dependencies = (
 			);
 			name = ToptalAssignment;
+			packageProductDependencies = (
+				E58B7A4F269AFB7400A367E1 /* Apollo */,
+			);
 			productName = ToptalAssignment;
 			productReference = E5138A0326979C6700D15FFA /* ToptalAssignment.app */;
 			productType = "com.apple.product-type.application";
@@ -212,6 +226,9 @@
 				Base,
 			);
 			mainGroup = E51389FA26979C6700D15FFA;
+			packageReferences = (
+				E58B7A4E269AFB7400A367E1 /* XCRemoteSwiftPackageReference "apollo-ios" */,
+			);
 			productRefGroup = E5138A0426979C6700D15FFA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -254,8 +271,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5138A0B26979C6700D15FFA /* ViewController.swift in Sources */,
+				E58B7A56269B25D700A367E1 /* Network.swift in Sources */,
+				E58B7A58269B724B00A367E1 /* RepositoryDetailsViewController.swift in Sources */,
+				E5138A0B26979C6700D15FFA /* RepositoryListViewController.swift in Sources */,
 				E5138A0726979C6700D15FFA /* AppDelegate.swift in Sources */,
+				E58B7A54269B253B00A367E1 /* API.swift in Sources */,
 				E5138A0926979C6700D15FFA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -581,6 +601,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E58B7A4E269AFB7400A367E1 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.45.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E58B7A4F269AFB7400A367E1 /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E58B7A4E269AFB7400A367E1 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E51389FB26979C6700D15FFA /* Project object */;
 }
