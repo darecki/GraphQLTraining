@@ -8,32 +8,41 @@ public final class ReposQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query Repos {
+    query Repos($cursor: String) {
       organization(login: "toptal") {
         __typename
-        repositories(first: 100) {
+        repositories(first: 10, after: $cursor) {
           __typename
           totalCount
-          nodes {
+          edges {
             __typename
-            name
-            url
-            openIssues: issues(first: 1, states: OPEN) {
+            cursor
+            node {
               __typename
-              totalCount
+              name
+              url
+              openIssues: issues(first: 1, states: OPEN) {
+                __typename
+                totalCount
+              }
+              closedIssues: issues(first: 1, states: CLOSED) {
+                __typename
+                totalCount
+              }
+              openPullRequests: pullRequests(first: 1, states: OPEN) {
+                __typename
+                totalCount
+              }
+              closedPullRequests: pullRequests(first: 1, states: CLOSED) {
+                __typename
+                totalCount
+              }
             }
-            closedIssues: issues(first: 1, states: CLOSED) {
-              __typename
-              totalCount
-            }
-            openPullRequests: pullRequests(first: 1, states: OPEN) {
-              __typename
-              totalCount
-            }
-            closedPullRequests: pullRequests(first: 1, states: CLOSED) {
-              __typename
-              totalCount
-            }
+          }
+          pageInfo {
+            __typename
+            endCursor
+            startCursor
           }
         }
       }
@@ -42,9 +51,16 @@ public final class ReposQuery: GraphQLQuery {
 
   public let operationName: String = "Repos"
 
-  public let operationIdentifier: String? = "17fd7879a164e0a56bbf305916deee23521e73b8775bb803e6bddb53d944f675"
+  public let operationIdentifier: String? = "4e014abbd12000eb7ea76bc09a13da143f4def34e5e0d3525f5d89555512af56"
 
-  public init() {
+  public var cursor: String?
+
+  public init(cursor: String? = nil) {
+    self.cursor = cursor
+  }
+
+  public var variables: GraphQLMap? {
+    return ["cursor": cursor]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -82,7 +98,7 @@ public final class ReposQuery: GraphQLQuery {
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("repositories", arguments: ["first": 100], type: .nonNull(.object(Repository.selections))),
+          GraphQLField("repositories", arguments: ["first": 10, "after": GraphQLVariable("cursor")], type: .nonNull(.object(Repository.selections))),
         ]
       }
 
@@ -122,7 +138,8 @@ public final class ReposQuery: GraphQLQuery {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
             GraphQLField("totalCount", type: .nonNull(.scalar(Int.self))),
-            GraphQLField("nodes", type: .list(.object(Node.selections))),
+            GraphQLField("edges", type: .list(.object(Edge.selections))),
+            GraphQLField("pageInfo", type: .nonNull(.object(PageInfo.selections))),
           ]
         }
 
@@ -132,8 +149,8 @@ public final class ReposQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(totalCount: Int, nodes: [Node?]? = nil) {
-          self.init(unsafeResultMap: ["__typename": "RepositoryConnection", "totalCount": totalCount, "nodes": nodes.flatMap { (value: [Node?]) -> [ResultMap?] in value.map { (value: Node?) -> ResultMap? in value.flatMap { (value: Node) -> ResultMap in value.resultMap } } }])
+        public init(totalCount: Int, edges: [Edge?]? = nil, pageInfo: PageInfo) {
+          self.init(unsafeResultMap: ["__typename": "RepositoryConnection", "totalCount": totalCount, "edges": edges.flatMap { (value: [Edge?]) -> [ResultMap?] in value.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } } }, "pageInfo": pageInfo.resultMap])
         }
 
         public var __typename: String {
@@ -155,28 +172,34 @@ public final class ReposQuery: GraphQLQuery {
           }
         }
 
-        /// A list of nodes.
-        public var nodes: [Node?]? {
+        /// A list of edges.
+        public var edges: [Edge?]? {
           get {
-            return (resultMap["nodes"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Node?] in value.map { (value: ResultMap?) -> Node? in value.flatMap { (value: ResultMap) -> Node in Node(unsafeResultMap: value) } } }
+            return (resultMap["edges"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Edge?] in value.map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } } }
           }
           set {
-            resultMap.updateValue(newValue.flatMap { (value: [Node?]) -> [ResultMap?] in value.map { (value: Node?) -> ResultMap? in value.flatMap { (value: Node) -> ResultMap in value.resultMap } } }, forKey: "nodes")
+            resultMap.updateValue(newValue.flatMap { (value: [Edge?]) -> [ResultMap?] in value.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } } }, forKey: "edges")
           }
         }
 
-        public struct Node: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["Repository"]
+        /// Information to aid in pagination.
+        public var pageInfo: PageInfo {
+          get {
+            return PageInfo(unsafeResultMap: resultMap["pageInfo"]! as! ResultMap)
+          }
+          set {
+            resultMap.updateValue(newValue.resultMap, forKey: "pageInfo")
+          }
+        }
+
+        public struct Edge: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["RepositoryEdge"]
 
           public static var selections: [GraphQLSelection] {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLField("name", type: .nonNull(.scalar(String.self))),
-              GraphQLField("url", type: .nonNull(.scalar(String.self))),
-              GraphQLField("issues", alias: "openIssues", arguments: ["first": 1, "states": "OPEN"], type: .nonNull(.object(OpenIssue.selections))),
-              GraphQLField("issues", alias: "closedIssues", arguments: ["first": 1, "states": "CLOSED"], type: .nonNull(.object(ClosedIssue.selections))),
-              GraphQLField("pullRequests", alias: "openPullRequests", arguments: ["first": 1, "states": "OPEN"], type: .nonNull(.object(OpenPullRequest.selections))),
-              GraphQLField("pullRequests", alias: "closedPullRequests", arguments: ["first": 1, "states": "CLOSED"], type: .nonNull(.object(ClosedPullRequest.selections))),
+              GraphQLField("cursor", type: .nonNull(.scalar(String.self))),
+              GraphQLField("node", type: .object(Node.selections)),
             ]
           }
 
@@ -186,8 +209,8 @@ public final class ReposQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(name: String, url: String, openIssues: OpenIssue, closedIssues: ClosedIssue, openPullRequests: OpenPullRequest, closedPullRequests: ClosedPullRequest) {
-            self.init(unsafeResultMap: ["__typename": "Repository", "name": name, "url": url, "openIssues": openIssues.resultMap, "closedIssues": closedIssues.resultMap, "openPullRequests": openPullRequests.resultMap, "closedPullRequests": closedPullRequests.resultMap])
+          public init(cursor: String, node: Node? = nil) {
+            self.init(unsafeResultMap: ["__typename": "RepositoryEdge", "cursor": cursor, "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
           }
 
           public var __typename: String {
@@ -199,73 +222,38 @@ public final class ReposQuery: GraphQLQuery {
             }
           }
 
-          /// The name of the repository.
-          public var name: String {
+          /// A cursor for use in pagination.
+          public var cursor: String {
             get {
-              return resultMap["name"]! as! String
+              return resultMap["cursor"]! as! String
             }
             set {
-              resultMap.updateValue(newValue, forKey: "name")
+              resultMap.updateValue(newValue, forKey: "cursor")
             }
           }
 
-          /// The HTTP URL for this repository
-          public var url: String {
+          /// The item at the end of the edge.
+          public var node: Node? {
             get {
-              return resultMap["url"]! as! String
+              return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
             }
             set {
-              resultMap.updateValue(newValue, forKey: "url")
+              resultMap.updateValue(newValue?.resultMap, forKey: "node")
             }
           }
 
-          /// A list of issues that have been opened in the repository.
-          public var openIssues: OpenIssue {
-            get {
-              return OpenIssue(unsafeResultMap: resultMap["openIssues"]! as! ResultMap)
-            }
-            set {
-              resultMap.updateValue(newValue.resultMap, forKey: "openIssues")
-            }
-          }
-
-          /// A list of issues that have been opened in the repository.
-          public var closedIssues: ClosedIssue {
-            get {
-              return ClosedIssue(unsafeResultMap: resultMap["closedIssues"]! as! ResultMap)
-            }
-            set {
-              resultMap.updateValue(newValue.resultMap, forKey: "closedIssues")
-            }
-          }
-
-          /// A list of pull requests that have been opened in the repository.
-          public var openPullRequests: OpenPullRequest {
-            get {
-              return OpenPullRequest(unsafeResultMap: resultMap["openPullRequests"]! as! ResultMap)
-            }
-            set {
-              resultMap.updateValue(newValue.resultMap, forKey: "openPullRequests")
-            }
-          }
-
-          /// A list of pull requests that have been opened in the repository.
-          public var closedPullRequests: ClosedPullRequest {
-            get {
-              return ClosedPullRequest(unsafeResultMap: resultMap["closedPullRequests"]! as! ResultMap)
-            }
-            set {
-              resultMap.updateValue(newValue.resultMap, forKey: "closedPullRequests")
-            }
-          }
-
-          public struct OpenIssue: GraphQLSelectionSet {
-            public static let possibleTypes: [String] = ["IssueConnection"]
+          public struct Node: GraphQLSelectionSet {
+            public static let possibleTypes: [String] = ["Repository"]
 
             public static var selections: [GraphQLSelection] {
               return [
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                GraphQLField("totalCount", type: .nonNull(.scalar(Int.self))),
+                GraphQLField("name", type: .nonNull(.scalar(String.self))),
+                GraphQLField("url", type: .nonNull(.scalar(String.self))),
+                GraphQLField("issues", alias: "openIssues", arguments: ["first": 1, "states": "OPEN"], type: .nonNull(.object(OpenIssue.selections))),
+                GraphQLField("issues", alias: "closedIssues", arguments: ["first": 1, "states": "CLOSED"], type: .nonNull(.object(ClosedIssue.selections))),
+                GraphQLField("pullRequests", alias: "openPullRequests", arguments: ["first": 1, "states": "OPEN"], type: .nonNull(.object(OpenPullRequest.selections))),
+                GraphQLField("pullRequests", alias: "closedPullRequests", arguments: ["first": 1, "states": "CLOSED"], type: .nonNull(.object(ClosedPullRequest.selections))),
               ]
             }
 
@@ -275,8 +263,8 @@ public final class ReposQuery: GraphQLQuery {
               self.resultMap = unsafeResultMap
             }
 
-            public init(totalCount: Int) {
-              self.init(unsafeResultMap: ["__typename": "IssueConnection", "totalCount": totalCount])
+            public init(name: String, url: String, openIssues: OpenIssue, closedIssues: ClosedIssue, openPullRequests: OpenPullRequest, closedPullRequests: ClosedPullRequest) {
+              self.init(unsafeResultMap: ["__typename": "Repository", "name": name, "url": url, "openIssues": openIssues.resultMap, "closedIssues": closedIssues.resultMap, "openPullRequests": openPullRequests.resultMap, "closedPullRequests": closedPullRequests.resultMap])
             }
 
             public var __typename: String {
@@ -288,134 +276,275 @@ public final class ReposQuery: GraphQLQuery {
               }
             }
 
-            /// Identifies the total count of items in the connection.
-            public var totalCount: Int {
+            /// The name of the repository.
+            public var name: String {
               get {
-                return resultMap["totalCount"]! as! Int
+                return resultMap["name"]! as! String
               }
               set {
-                resultMap.updateValue(newValue, forKey: "totalCount")
+                resultMap.updateValue(newValue, forKey: "name")
+              }
+            }
+
+            /// The HTTP URL for this repository
+            public var url: String {
+              get {
+                return resultMap["url"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "url")
+              }
+            }
+
+            /// A list of issues that have been opened in the repository.
+            public var openIssues: OpenIssue {
+              get {
+                return OpenIssue(unsafeResultMap: resultMap["openIssues"]! as! ResultMap)
+              }
+              set {
+                resultMap.updateValue(newValue.resultMap, forKey: "openIssues")
+              }
+            }
+
+            /// A list of issues that have been opened in the repository.
+            public var closedIssues: ClosedIssue {
+              get {
+                return ClosedIssue(unsafeResultMap: resultMap["closedIssues"]! as! ResultMap)
+              }
+              set {
+                resultMap.updateValue(newValue.resultMap, forKey: "closedIssues")
+              }
+            }
+
+            /// A list of pull requests that have been opened in the repository.
+            public var openPullRequests: OpenPullRequest {
+              get {
+                return OpenPullRequest(unsafeResultMap: resultMap["openPullRequests"]! as! ResultMap)
+              }
+              set {
+                resultMap.updateValue(newValue.resultMap, forKey: "openPullRequests")
+              }
+            }
+
+            /// A list of pull requests that have been opened in the repository.
+            public var closedPullRequests: ClosedPullRequest {
+              get {
+                return ClosedPullRequest(unsafeResultMap: resultMap["closedPullRequests"]! as! ResultMap)
+              }
+              set {
+                resultMap.updateValue(newValue.resultMap, forKey: "closedPullRequests")
+              }
+            }
+
+            public struct OpenIssue: GraphQLSelectionSet {
+              public static let possibleTypes: [String] = ["IssueConnection"]
+
+              public static var selections: [GraphQLSelection] {
+                return [
+                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("totalCount", type: .nonNull(.scalar(Int.self))),
+                ]
+              }
+
+              public private(set) var resultMap: ResultMap
+
+              public init(unsafeResultMap: ResultMap) {
+                self.resultMap = unsafeResultMap
+              }
+
+              public init(totalCount: Int) {
+                self.init(unsafeResultMap: ["__typename": "IssueConnection", "totalCount": totalCount])
+              }
+
+              public var __typename: String {
+                get {
+                  return resultMap["__typename"]! as! String
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "__typename")
+                }
+              }
+
+              /// Identifies the total count of items in the connection.
+              public var totalCount: Int {
+                get {
+                  return resultMap["totalCount"]! as! Int
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "totalCount")
+                }
+              }
+            }
+
+            public struct ClosedIssue: GraphQLSelectionSet {
+              public static let possibleTypes: [String] = ["IssueConnection"]
+
+              public static var selections: [GraphQLSelection] {
+                return [
+                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("totalCount", type: .nonNull(.scalar(Int.self))),
+                ]
+              }
+
+              public private(set) var resultMap: ResultMap
+
+              public init(unsafeResultMap: ResultMap) {
+                self.resultMap = unsafeResultMap
+              }
+
+              public init(totalCount: Int) {
+                self.init(unsafeResultMap: ["__typename": "IssueConnection", "totalCount": totalCount])
+              }
+
+              public var __typename: String {
+                get {
+                  return resultMap["__typename"]! as! String
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "__typename")
+                }
+              }
+
+              /// Identifies the total count of items in the connection.
+              public var totalCount: Int {
+                get {
+                  return resultMap["totalCount"]! as! Int
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "totalCount")
+                }
+              }
+            }
+
+            public struct OpenPullRequest: GraphQLSelectionSet {
+              public static let possibleTypes: [String] = ["PullRequestConnection"]
+
+              public static var selections: [GraphQLSelection] {
+                return [
+                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("totalCount", type: .nonNull(.scalar(Int.self))),
+                ]
+              }
+
+              public private(set) var resultMap: ResultMap
+
+              public init(unsafeResultMap: ResultMap) {
+                self.resultMap = unsafeResultMap
+              }
+
+              public init(totalCount: Int) {
+                self.init(unsafeResultMap: ["__typename": "PullRequestConnection", "totalCount": totalCount])
+              }
+
+              public var __typename: String {
+                get {
+                  return resultMap["__typename"]! as! String
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "__typename")
+                }
+              }
+
+              /// Identifies the total count of items in the connection.
+              public var totalCount: Int {
+                get {
+                  return resultMap["totalCount"]! as! Int
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "totalCount")
+                }
+              }
+            }
+
+            public struct ClosedPullRequest: GraphQLSelectionSet {
+              public static let possibleTypes: [String] = ["PullRequestConnection"]
+
+              public static var selections: [GraphQLSelection] {
+                return [
+                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("totalCount", type: .nonNull(.scalar(Int.self))),
+                ]
+              }
+
+              public private(set) var resultMap: ResultMap
+
+              public init(unsafeResultMap: ResultMap) {
+                self.resultMap = unsafeResultMap
+              }
+
+              public init(totalCount: Int) {
+                self.init(unsafeResultMap: ["__typename": "PullRequestConnection", "totalCount": totalCount])
+              }
+
+              public var __typename: String {
+                get {
+                  return resultMap["__typename"]! as! String
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "__typename")
+                }
+              }
+
+              /// Identifies the total count of items in the connection.
+              public var totalCount: Int {
+                get {
+                  return resultMap["totalCount"]! as! Int
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "totalCount")
+                }
               }
             }
           }
+        }
 
-          public struct ClosedIssue: GraphQLSelectionSet {
-            public static let possibleTypes: [String] = ["IssueConnection"]
+        public struct PageInfo: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["PageInfo"]
 
-            public static var selections: [GraphQLSelection] {
-              return [
-                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                GraphQLField("totalCount", type: .nonNull(.scalar(Int.self))),
-              ]
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("endCursor", type: .scalar(String.self)),
+              GraphQLField("startCursor", type: .scalar(String.self)),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(endCursor: String? = nil, startCursor: String? = nil) {
+            self.init(unsafeResultMap: ["__typename": "PageInfo", "endCursor": endCursor, "startCursor": startCursor])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
             }
-
-            public private(set) var resultMap: ResultMap
-
-            public init(unsafeResultMap: ResultMap) {
-              self.resultMap = unsafeResultMap
-            }
-
-            public init(totalCount: Int) {
-              self.init(unsafeResultMap: ["__typename": "IssueConnection", "totalCount": totalCount])
-            }
-
-            public var __typename: String {
-              get {
-                return resultMap["__typename"]! as! String
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "__typename")
-              }
-            }
-
-            /// Identifies the total count of items in the connection.
-            public var totalCount: Int {
-              get {
-                return resultMap["totalCount"]! as! Int
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "totalCount")
-              }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
             }
           }
 
-          public struct OpenPullRequest: GraphQLSelectionSet {
-            public static let possibleTypes: [String] = ["PullRequestConnection"]
-
-            public static var selections: [GraphQLSelection] {
-              return [
-                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                GraphQLField("totalCount", type: .nonNull(.scalar(Int.self))),
-              ]
+          /// When paginating forwards, the cursor to continue.
+          public var endCursor: String? {
+            get {
+              return resultMap["endCursor"] as? String
             }
-
-            public private(set) var resultMap: ResultMap
-
-            public init(unsafeResultMap: ResultMap) {
-              self.resultMap = unsafeResultMap
-            }
-
-            public init(totalCount: Int) {
-              self.init(unsafeResultMap: ["__typename": "PullRequestConnection", "totalCount": totalCount])
-            }
-
-            public var __typename: String {
-              get {
-                return resultMap["__typename"]! as! String
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "__typename")
-              }
-            }
-
-            /// Identifies the total count of items in the connection.
-            public var totalCount: Int {
-              get {
-                return resultMap["totalCount"]! as! Int
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "totalCount")
-              }
+            set {
+              resultMap.updateValue(newValue, forKey: "endCursor")
             }
           }
 
-          public struct ClosedPullRequest: GraphQLSelectionSet {
-            public static let possibleTypes: [String] = ["PullRequestConnection"]
-
-            public static var selections: [GraphQLSelection] {
-              return [
-                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                GraphQLField("totalCount", type: .nonNull(.scalar(Int.self))),
-              ]
+          /// When paginating backwards, the cursor to continue.
+          public var startCursor: String? {
+            get {
+              return resultMap["startCursor"] as? String
             }
-
-            public private(set) var resultMap: ResultMap
-
-            public init(unsafeResultMap: ResultMap) {
-              self.resultMap = unsafeResultMap
-            }
-
-            public init(totalCount: Int) {
-              self.init(unsafeResultMap: ["__typename": "PullRequestConnection", "totalCount": totalCount])
-            }
-
-            public var __typename: String {
-              get {
-                return resultMap["__typename"]! as! String
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "__typename")
-              }
-            }
-
-            /// Identifies the total count of items in the connection.
-            public var totalCount: Int {
-              get {
-                return resultMap["totalCount"]! as! Int
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "totalCount")
-              }
+            set {
+              resultMap.updateValue(newValue, forKey: "startCursor")
             }
           }
         }

@@ -1,22 +1,29 @@
-query Repos {
+query Repos($cursor: String) {
   organization(login: "toptal") {
-    repositories(first: 100) {
+    repositories(first: 10, after: $cursor) {
       totalCount
-      nodes {
-        name
-        url
-        openIssues: issues(first: 1, states: OPEN) {
-          totalCount
+      edges {
+        cursor
+        node {
+          name
+          url
+          openIssues: issues(first: 1, states: OPEN) {
+            totalCount
+          }
+          closedIssues: issues(first: 1, states: CLOSED) {
+            totalCount
+          }
+          openPullRequests: pullRequests(first: 1, states: OPEN) {
+            totalCount
+          }
+          closedPullRequests: pullRequests(first: 1, states: CLOSED) {
+            totalCount
+          }
         }
-        closedIssues: issues(first: 1, states: CLOSED) {
-          totalCount
-        }
-        openPullRequests: pullRequests(first: 1, states: OPEN) {
-          totalCount
-        }
-        closedPullRequests: pullRequests(first: 1, states: CLOSED) {
-          totalCount
-        }
+      }
+      pageInfo {
+        endCursor
+        startCursor
       }
     }
   }

@@ -9,16 +9,22 @@ import UIKit
 
 final class RepositoryDetailsViewController: UIViewController {
 
-    let stackView: UIStackView = {
+    private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
 
-    let repo: ReposQuery.Data.Organization.Repository.Node
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
 
-    init(repo: ReposQuery.Data.Organization.Repository.Node) {
+    let repo: ReposQuery.Data.Organization.Repository.Edge.Node
+
+    init(repo: ReposQuery.Data.Organization.Repository.Edge.Node) {
         self.repo = repo
         super.init(nibName: nil, bundle: nil)
     }
@@ -38,12 +44,12 @@ final class RepositoryDetailsViewController: UIViewController {
 
         title = repo.name
 
-        view.addSubview(stackView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(stackView)
+        scrollView.addConstraints(to: view)
+        stackView.addConstraints(to: scrollView)
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            stackView.topAnchor.constraint(equalTo: view.topAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            stackView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
 
         stackView.addArrangedSubview(makeLabel("Open issues: \(repo.openIssues.totalCount)"))
