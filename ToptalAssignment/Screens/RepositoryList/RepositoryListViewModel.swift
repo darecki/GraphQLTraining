@@ -6,16 +6,15 @@
 //
 
 import Foundation
-import Apollo
+
+typealias Repo = ReposQuery.Data.Organization.Repository.Edge.Node
 
 final class RepositoryListViewModel {
-    typealias Repo = ReposQuery.Data.Organization.Repository.Edge.Node
-
-    private let apollo: ApolloClient
     private var cursor: String?
+    private let fetchRepositoriesUseCase: FetchRepositoriesUseCaseProtocol
 
-    init(apollo: ApolloClient = Network.shared.apollo) {
-        self.apollo = apollo
+    init(fetchRepositoriesUseCase: FetchRepositoriesUseCaseProtocol) {
+        self.fetchRepositoriesUseCase = fetchRepositoriesUseCase
     }
 
     // input
@@ -29,8 +28,8 @@ final class RepositoryListViewModel {
     var didError: ((String) -> Void)?
 
     private func loadRepos(cursor: String?) {
-        Network.shared.apollo
-            .fetch(query: ReposQuery(cursor: cursor)) { [weak self] result in
+        fetchRepositoriesUseCase
+            .fetch(cursor: cursor) { [weak self] result in
                 guard let self = self else { return }
 
                 switch result {

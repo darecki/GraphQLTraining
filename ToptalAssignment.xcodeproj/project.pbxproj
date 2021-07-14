@@ -14,6 +14,8 @@
 		E5138A1326979C6900D15FFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5138A1126979C6900D15FFA /* LaunchScreen.storyboard */; };
 		E5138A1E26979C6900D15FFA /* ToptalAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5138A1D26979C6900D15FFA /* ToptalAssignmentTests.swift */; };
 		E5138A2926979C6A00D15FFA /* ToptalAssignmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5138A2826979C6A00D15FFA /* ToptalAssignmentUITests.swift */; };
+		E532162C269F5EB800285D8F /* RepositoryListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E532162B269F5EB800285D8F /* RepositoryListViewModelTests.swift */; };
+		E532162F269F7F0000285D8F /* FetchRepositoriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E532162E269F7F0000285D8F /* FetchRepositoriesUseCase.swift */; };
 		E58B7A50269AFB7400A367E1 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = E58B7A4F269AFB7400A367E1 /* Apollo */; };
 		E58B7A54269B253B00A367E1 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58B7A53269B253B00A367E1 /* API.swift */; };
 		E58B7A56269B25D700A367E1 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58B7A55269B25D700A367E1 /* Network.swift */; };
@@ -54,6 +56,8 @@
 		E5138A2426979C6A00D15FFA /* ToptalAssignmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToptalAssignmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5138A2826979C6A00D15FFA /* ToptalAssignmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToptalAssignmentUITests.swift; sourceTree = "<group>"; };
 		E5138A2A26979C6A00D15FFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E532162B269F5EB800285D8F /* RepositoryListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewModelTests.swift; sourceTree = "<group>"; };
+		E532162E269F7F0000285D8F /* FetchRepositoriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRepositoriesUseCase.swift; sourceTree = "<group>"; };
 		E58B7A53269B253B00A367E1 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		E58B7A55269B25D700A367E1 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		E58B7A57269B724B00A367E1 /* RepositoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 				E58B7A53269B253B00A367E1 /* API.swift */,
 				E5138A0626979C6700D15FFA /* AppDelegate.swift */,
 				E5138A0826979C6700D15FFA /* SceneDelegate.swift */,
+				E5321630269F7F0500285D8F /* UseCases */,
 				E5EBCD96269E5ACF0013473F /* Screens */,
 				E5EBCD97269E5AE90013473F /* Extensions */,
 				E5EBCD98269E5B010013473F /* Networking */,
@@ -128,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				E5138A1D26979C6900D15FFA /* ToptalAssignmentTests.swift */,
+				E532162B269F5EB800285D8F /* RepositoryListViewModelTests.swift */,
 				E5138A1F26979C6900D15FFA /* Info.plist */,
 			);
 			path = ToptalAssignmentTests;
@@ -140,6 +146,14 @@
 				E5138A2A26979C6A00D15FFA /* Info.plist */,
 			);
 			path = ToptalAssignmentUITests;
+			sourceTree = "<group>";
+		};
+		E5321630269F7F0500285D8F /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				E532162E269F7F0000285D8F /* FetchRepositoriesUseCase.swift */,
+			);
+			path = UseCases;
 			sourceTree = "<group>";
 		};
 		E5EBCD94269E5AAF0013473F /* RepositoryList */ = {
@@ -320,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E532162F269F7F0000285D8F /* FetchRepositoriesUseCase.swift in Sources */,
 				E5EBCD91269E53CA0013473F /* RepositoryListViewModel.swift in Sources */,
 				E58B7A56269B25D700A367E1 /* Network.swift in Sources */,
 				E58B7A58269B724B00A367E1 /* RepositoryDetailsViewController.swift in Sources */,
@@ -336,6 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E532162C269F5EB800285D8F /* RepositoryListViewModelTests.swift in Sources */,
 				E5138A1E26979C6900D15FFA /* ToptalAssignmentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

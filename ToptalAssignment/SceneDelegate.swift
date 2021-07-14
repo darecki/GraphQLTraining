@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let window = UIWindow(windowScene: windowScene)
 
-        let viewModel = RepositoryListViewModel()
+        let viewModel = RepositoryListViewModel(fetchRepositoriesUseCase: FetchRepositoriesUseCase())
         let viewController = RepositoryListViewController(viewModel: viewModel)
         window.rootViewController = UINavigationController(rootViewController: viewController)
         window.makeKeyAndVisible()
