@@ -12,7 +12,6 @@
 		E5138A0B26979C6700D15FFA /* RepositoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5138A0A26979C6700D15FFA /* RepositoryListViewController.swift */; };
 		E5138A1026979C6900D15FFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5138A0F26979C6900D15FFA /* Assets.xcassets */; };
 		E5138A1326979C6900D15FFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5138A1126979C6900D15FFA /* LaunchScreen.storyboard */; };
-		E5138A1E26979C6900D15FFA /* ToptalAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5138A1D26979C6900D15FFA /* ToptalAssignmentTests.swift */; };
 		E532162C269F5EB800285D8F /* RepositoryListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E532162B269F5EB800285D8F /* RepositoryListViewModelTests.swift */; };
 		E532162F269F7F0000285D8F /* FetchRepositoriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E532162E269F7F0000285D8F /* FetchRepositoriesUseCase.swift */; };
 		E58B7A50269AFB7400A367E1 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = E58B7A4F269AFB7400A367E1 /* Apollo */; };
@@ -30,20 +29,19 @@
 			containerPortal = E51389FB26979C6700D15FFA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E5138A0226979C6700D15FFA;
-			remoteInfo = ToptalAssignment;
+			remoteInfo = GraphQLTraining;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E5138A0326979C6700D15FFA /* ToptalAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToptalAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5138A0326979C6700D15FFA /* GraphQLTraining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraphQLTraining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5138A0626979C6700D15FFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5138A0826979C6700D15FFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E5138A0A26979C6700D15FFA /* RepositoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewController.swift; sourceTree = "<group>"; };
 		E5138A0F26979C6900D15FFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E5138A1226979C6900D15FFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E5138A1426979C6900D15FFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E5138A1926979C6900D15FFA /* ToptalAssignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToptalAssignmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E5138A1D26979C6900D15FFA /* ToptalAssignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToptalAssignmentTests.swift; sourceTree = "<group>"; };
+		E5138A1926979C6900D15FFA /* GraphQLTrainingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraphQLTrainingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5138A1F26979C6900D15FFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E532162B269F5EB800285D8F /* RepositoryListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewModelTests.swift; sourceTree = "<group>"; };
 		E532162E269F7F0000285D8F /* FetchRepositoriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRepositoriesUseCase.swift; sourceTree = "<group>"; };
@@ -77,8 +75,8 @@
 		E51389FA26979C6700D15FFA = {
 			isa = PBXGroup;
 			children = (
-				E5138A0526979C6700D15FFA /* ToptalAssignment */,
-				E5138A1C26979C6900D15FFA /* ToptalAssignmentTests */,
+				E5138A0526979C6700D15FFA /* GraphQLTraining */,
+				E5138A1C26979C6900D15FFA /* GraphQLTrainingTests */,
 				E5138A0426979C6700D15FFA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,13 +84,13 @@
 		E5138A0426979C6700D15FFA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E5138A0326979C6700D15FFA /* ToptalAssignment.app */,
-				E5138A1926979C6900D15FFA /* ToptalAssignmentTests.xctest */,
+				E5138A0326979C6700D15FFA /* GraphQLTraining.app */,
+				E5138A1926979C6900D15FFA /* GraphQLTrainingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E5138A0526979C6700D15FFA /* ToptalAssignment */ = {
+		E5138A0526979C6700D15FFA /* GraphQLTraining */ = {
 			isa = PBXGroup;
 			children = (
 				E58B7A53269B253B00A367E1 /* API.swift */,
@@ -107,17 +105,16 @@
 				E5138A1126979C6900D15FFA /* LaunchScreen.storyboard */,
 				E5138A1426979C6900D15FFA /* Info.plist */,
 			);
-			path = ToptalAssignment;
+			path = GraphQLTraining;
 			sourceTree = "<group>";
 		};
-		E5138A1C26979C6900D15FFA /* ToptalAssignmentTests */ = {
+		E5138A1C26979C6900D15FFA /* GraphQLTrainingTests */ = {
 			isa = PBXGroup;
 			children = (
-				E5138A1D26979C6900D15FFA /* ToptalAssignmentTests.swift */,
 				E532162B269F5EB800285D8F /* RepositoryListViewModelTests.swift */,
 				E5138A1F26979C6900D15FFA /* Info.plist */,
 			);
-			path = ToptalAssignmentTests;
+			path = GraphQLTrainingTests;
 			sourceTree = "<group>";
 		};
 		E5321630269F7F0500285D8F /* UseCases */ = {
@@ -181,9 +178,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E5138A0226979C6700D15FFA /* ToptalAssignment */ = {
+		E5138A0226979C6700D15FFA /* GraphQLTraining */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E5138A2D26979C6A00D15FFA /* Build configuration list for PBXNativeTarget "ToptalAssignment" */;
+			buildConfigurationList = E5138A2D26979C6A00D15FFA /* Build configuration list for PBXNativeTarget "GraphQLTraining" */;
 			buildPhases = (
 				E51389FF26979C6700D15FFA /* Sources */,
 				E5138A0026979C6700D15FFA /* Frameworks */,
@@ -193,17 +190,17 @@
 			);
 			dependencies = (
 			);
-			name = ToptalAssignment;
+			name = GraphQLTraining;
 			packageProductDependencies = (
 				E58B7A4F269AFB7400A367E1 /* Apollo */,
 			);
-			productName = ToptalAssignment;
-			productReference = E5138A0326979C6700D15FFA /* ToptalAssignment.app */;
+			productName = GraphQLTraining;
+			productReference = E5138A0326979C6700D15FFA /* GraphQLTraining.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E5138A1826979C6900D15FFA /* ToptalAssignmentTests */ = {
+		E5138A1826979C6900D15FFA /* GraphQLTrainingTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E5138A3026979C6A00D15FFA /* Build configuration list for PBXNativeTarget "ToptalAssignmentTests" */;
+			buildConfigurationList = E5138A3026979C6A00D15FFA /* Build configuration list for PBXNativeTarget "GraphQLTrainingTests" */;
 			buildPhases = (
 				E5138A1526979C6900D15FFA /* Sources */,
 				E5138A1626979C6900D15FFA /* Frameworks */,
@@ -214,9 +211,9 @@
 			dependencies = (
 				E5138A1B26979C6900D15FFA /* PBXTargetDependency */,
 			);
-			name = ToptalAssignmentTests;
-			productName = ToptalAssignmentTests;
-			productReference = E5138A1926979C6900D15FFA /* ToptalAssignmentTests.xctest */;
+			name = GraphQLTrainingTests;
+			productName = GraphQLTrainingTests;
+			productReference = E5138A1926979C6900D15FFA /* GraphQLTrainingTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -237,7 +234,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E51389FE26979C6700D15FFA /* Build configuration list for PBXProject "ToptalAssignment" */;
+			buildConfigurationList = E51389FE26979C6700D15FFA /* Build configuration list for PBXProject "GraphQLTraining" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -253,8 +250,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E5138A0226979C6700D15FFA /* ToptalAssignment */,
-				E5138A1826979C6900D15FFA /* ToptalAssignmentTests */,
+				E5138A0226979C6700D15FFA /* GraphQLTraining */,
+				E5138A1826979C6900D15FFA /* GraphQLTrainingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -301,7 +298,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E532162C269F5EB800285D8F /* RepositoryListViewModelTests.swift in Sources */,
-				E5138A1E26979C6900D15FFA /* ToptalAssignmentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,7 +306,7 @@
 /* Begin PBXTargetDependency section */
 		E5138A1B26979C6900D15FFA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E5138A0226979C6700D15FFA /* ToptalAssignment */;
+			target = E5138A0226979C6700D15FFA /* GraphQLTraining */;
 			targetProxy = E5138A1A26979C6900D15FFA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -450,12 +446,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 894638CC68;
-				INFOPLIST_FILE = ToptalAssignment/Info.plist;
+				INFOPLIST_FILE = GraphQLTraining/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = darek.ciesla.ToptalAssignment;
+				PRODUCT_BUNDLE_IDENTIFIER = darek.ciesla.GraphQLTraining;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -469,12 +465,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 894638CC68;
-				INFOPLIST_FILE = ToptalAssignment/Info.plist;
+				INFOPLIST_FILE = GraphQLTraining/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = darek.ciesla.ToptalAssignment;
+				PRODUCT_BUNDLE_IDENTIFIER = darek.ciesla.GraphQLTraining;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -488,18 +484,18 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 894638CC68;
-				INFOPLIST_FILE = ToptalAssignmentTests/Info.plist;
+				INFOPLIST_FILE = GraphQLTrainingTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = darek.ciesla.ToptalAssignmentTests;
+				PRODUCT_BUNDLE_IDENTIFIER = darek.ciesla.GraphQLTrainingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ToptalAssignment.app/ToptalAssignment";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GraphQLTraining.app/GraphQLTraining";
 			};
 			name = Debug;
 		};
@@ -510,25 +506,25 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 894638CC68;
-				INFOPLIST_FILE = ToptalAssignmentTests/Info.plist;
+				INFOPLIST_FILE = GraphQLTrainingTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = darek.ciesla.ToptalAssignmentTests;
+				PRODUCT_BUNDLE_IDENTIFIER = darek.ciesla.GraphQLTrainingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ToptalAssignment.app/ToptalAssignment";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GraphQLTraining.app/GraphQLTraining";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E51389FE26979C6700D15FFA /* Build configuration list for PBXProject "ToptalAssignment" */ = {
+		E51389FE26979C6700D15FFA /* Build configuration list for PBXProject "GraphQLTraining" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E5138A2B26979C6A00D15FFA /* Debug */,
@@ -537,7 +533,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E5138A2D26979C6A00D15FFA /* Build configuration list for PBXNativeTarget "ToptalAssignment" */ = {
+		E5138A2D26979C6A00D15FFA /* Build configuration list for PBXNativeTarget "GraphQLTraining" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E5138A2E26979C6A00D15FFA /* Debug */,
@@ -546,7 +542,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E5138A3026979C6A00D15FFA /* Build configuration list for PBXNativeTarget "ToptalAssignmentTests" */ = {
+		E5138A3026979C6A00D15FFA /* Build configuration list for PBXNativeTarget "GraphQLTrainingTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E5138A3126979C6A00D15FFA /* Debug */,

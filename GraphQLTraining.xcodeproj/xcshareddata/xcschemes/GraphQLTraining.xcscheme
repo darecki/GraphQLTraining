@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E5138A0226979C6700D15FFA"
-               BuildableName = "ToptalAssignment.app"
-               BlueprintName = "ToptalAssignment"
-               ReferencedContainer = "container:ToptalAssignment.xcodeproj">
+               BuildableName = "GraphQLTraining.app"
+               BlueprintName = "GraphQLTraining"
+               ReferencedContainer = "container:GraphQLTraining.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,19 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E5138A1826979C6900D15FFA"
-               BuildableName = "ToptalAssignmentTests.xctest"
-               BlueprintName = "ToptalAssignmentTests"
-               ReferencedContainer = "container:ToptalAssignment.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E5138A2326979C6A00D15FFA"
-               BuildableName = "ToptalAssignmentUITests.xctest"
-               BlueprintName = "ToptalAssignmentUITests"
-               ReferencedContainer = "container:ToptalAssignment.xcodeproj">
+               BuildableName = "GraphQLTrainingTests.xctest"
+               BlueprintName = "GraphQLTrainingTests"
+               ReferencedContainer = "container:GraphQLTraining.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -65,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E5138A0226979C6700D15FFA"
-            BuildableName = "ToptalAssignment.app"
-            BlueprintName = "ToptalAssignment"
-            ReferencedContainer = "container:ToptalAssignment.xcodeproj">
+            BuildableName = "GraphQLTraining.app"
+            BlueprintName = "GraphQLTraining"
+            ReferencedContainer = "container:GraphQLTraining.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -82,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E5138A0226979C6700D15FFA"
-            BuildableName = "ToptalAssignment.app"
-            BlueprintName = "ToptalAssignment"
-            ReferencedContainer = "container:ToptalAssignment.xcodeproj">
+            BuildableName = "GraphQLTraining.app"
+            BlueprintName = "GraphQLTraining"
+            ReferencedContainer = "container:GraphQLTraining.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

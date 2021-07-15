@@ -1,6 +1,6 @@
 //
 //  UIView+Constraints.swift
-//  ToptalAssignment
+//  GraphQLTraining
 //
 //  Created by Dariusz Ciesla on 14/07/2021.
 //

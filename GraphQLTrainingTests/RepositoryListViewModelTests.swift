@@ -1,13 +1,13 @@
 //
 //  RepositoryListViewModelTests.swift
-//  ToptalAssignmentTests
+//  GraphQLTrainingTests
 //
 //  Created by Dariusz Ciesla on 14/07/2021.
 //
 
 import XCTest
 import Apollo
-@testable import ToptalAssignment
+@testable import GraphQLTraining
 
 enum TestError: Error {
     case testError

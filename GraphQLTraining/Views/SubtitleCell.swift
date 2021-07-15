@@ -1,6 +1,6 @@
 //
 //  SubtitleCell.swift
-//  ToptalAssignment
+//  GraphQLTraining
 //
 //  Created by Dariusz Ciesla on 15/07/2021.
 //

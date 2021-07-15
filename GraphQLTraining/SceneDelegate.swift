@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  ToptalAssignment
+//  GraphQLTraining
 //
 //  Created by Dariusz Ciesla on 08/07/2021.
 //

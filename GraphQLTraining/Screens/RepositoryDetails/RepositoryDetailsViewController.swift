@@ -1,6 +1,6 @@
 //
 //  RepositoryDetailsViewController.swift
-//  ToptalAssignment
+//  GraphQLTraining
 //
 //  Created by Dariusz Ciesla on 11/07/2021.
 //
