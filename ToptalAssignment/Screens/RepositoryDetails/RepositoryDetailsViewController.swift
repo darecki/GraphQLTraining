@@ -22,7 +22,7 @@ final class RepositoryDetailsViewController: UIViewController {
         return scrollView
     }()
 
-    let repo: ReposQuery.Data.Organization.Repository.Edge.Node
+    private let repo: ReposQuery.Data.Organization.Repository.Edge.Node
 
     init(repo: ReposQuery.Data.Organization.Repository.Edge.Node) {
         self.repo = repo
@@ -33,7 +33,7 @@ final class RepositoryDetailsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func makeLabel(_ string: String) -> UILabel {
+    private func makeLabel(_ string: String) -> UILabel {
         let label = UILabel()
         label.text = string
         return label

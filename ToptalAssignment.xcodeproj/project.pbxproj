@@ -21,8 +21,8 @@
 		E58B7A56269B25D700A367E1 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58B7A55269B25D700A367E1 /* Network.swift */; };
 		E58B7A58269B724B00A367E1 /* RepositoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58B7A57269B724B00A367E1 /* RepositoryDetailsViewController.swift */; };
 		E5A89DA6269E4CDA00DC17AE /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A89DA5269E4CDA00DC17AE /* UIView+Constraints.swift */; };
+		E5DD546D26A0D17500F96466 /* SubtitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DD546C26A0D17500F96466 /* SubtitleCell.swift */; };
 		E5EBCD91269E53CA0013473F /* RepositoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EBCD90269E53CA0013473F /* RepositoryListViewModel.swift */; };
-		E5EBCD93269E53E00013473F /* RepositoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EBCD92269E53E00013473F /* RepositoryDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +62,8 @@
 		E58B7A55269B25D700A367E1 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		E58B7A57269B724B00A367E1 /* RepositoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsViewController.swift; sourceTree = "<group>"; };
 		E5A89DA5269E4CDA00DC17AE /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
+		E5DD546C26A0D17500F96466 /* SubtitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleCell.swift; sourceTree = "<group>"; };
 		E5EBCD90269E53CA0013473F /* RepositoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewModel.swift; sourceTree = "<group>"; };
-		E5EBCD92269E53E00013473F /* RepositoryDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +120,7 @@
 				E5138A0826979C6700D15FFA /* SceneDelegate.swift */,
 				E5321630269F7F0500285D8F /* UseCases */,
 				E5EBCD96269E5ACF0013473F /* Screens */,
+				E5DD546E26A0D18800F96466 /* Views */,
 				E5EBCD97269E5AE90013473F /* Extensions */,
 				E5EBCD98269E5B010013473F /* Networking */,
 				E5138A0F26979C6900D15FFA /* Assets.xcassets */,
@@ -156,6 +157,14 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
+		E5DD546E26A0D18800F96466 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E5DD546C26A0D17500F96466 /* SubtitleCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		E5EBCD94269E5AAF0013473F /* RepositoryList */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,7 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				E58B7A57269B724B00A367E1 /* RepositoryDetailsViewController.swift */,
-				E5EBCD92269E53E00013473F /* RepositoryDetailsViewModel.swift */,
 			);
 			path = RepositoryDetails;
 			sourceTree = "<group>";
@@ -338,8 +346,8 @@
 				E5EBCD91269E53CA0013473F /* RepositoryListViewModel.swift in Sources */,
 				E58B7A56269B25D700A367E1 /* Network.swift in Sources */,
 				E58B7A58269B724B00A367E1 /* RepositoryDetailsViewController.swift in Sources */,
-				E5EBCD93269E53E00013473F /* RepositoryDetailsViewModel.swift in Sources */,
 				E5138A0B26979C6700D15FFA /* RepositoryListViewController.swift in Sources */,
+				E5DD546D26A0D17500F96466 /* SubtitleCell.swift in Sources */,
 				E5A89DA6269E4CDA00DC17AE /* UIView+Constraints.swift in Sources */,
 				E5138A0726979C6700D15FFA /* AppDelegate.swift in Sources */,
 				E58B7A54269B253B00A367E1 /* API.swift in Sources */,

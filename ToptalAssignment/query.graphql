@@ -1,6 +1,6 @@
 query Repos($cursor: String) {
   organization(login: "toptal") {
-    repositories(first: 10, after: $cursor) {
+    repositories(first: 50, after: $cursor) {
       totalCount
       edges {
         cursor
@@ -24,6 +24,8 @@ query Repos($cursor: String) {
       pageInfo {
         endCursor
         startCursor
+        hasNextPage
+        hasPreviousPage
       }
     }
   }

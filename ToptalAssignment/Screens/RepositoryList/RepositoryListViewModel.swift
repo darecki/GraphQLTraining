@@ -8,9 +8,11 @@
 import Foundation
 
 typealias Repo = ReposQuery.Data.Organization.Repository.Edge.Node
+typealias PageInfo = ReposQuery.Data.Organization.Repository.PageInfo
 
 final class RepositoryListViewModel {
-    private var cursor: String?
+    var lastPageInfo: PageInfo?
+
     private let fetchRepositoriesUseCase: FetchRepositoriesUseCaseProtocol
 
     init(fetchRepositoriesUseCase: FetchRepositoriesUseCaseProtocol) {
@@ -19,7 +21,13 @@ final class RepositoryListViewModel {
 
     // input
     func fetchData() {
-        loadRepos(cursor: nil)
+        guard let lastPageInfo = lastPageInfo else {
+            loadRepos(cursor: nil)
+            return
+        }
+        if lastPageInfo.hasNextPage {
+            loadRepos(cursor: lastPageInfo.endCursor)
+        }
     }
 
     // output
@@ -27,7 +35,8 @@ final class RepositoryListViewModel {
     var didUpdate: (([Repo]) -> Void)?
     var didError: ((String) -> Void)?
 
-    func loadRepos(cursor: String?) {
+    private func loadRepos(cursor: String?) {
+        // there is no visual feedback that the request is in progress
         fetchRepositoriesUseCase
             .fetch(cursor: cursor) { [weak self] result in
                 guard let self = self else { return }
@@ -37,6 +46,9 @@ final class RepositoryListViewModel {
                     if let edges = graphQLResult.data?.organization?.repositories.edges {
                         self.repos.append(contentsOf: edges.compactMap { $0?.node })
                         self.didUpdate?(self.repos)
+                    }
+                    if let pageInfo = graphQLResult.data?.organization?.repositories.pageInfo {
+                        self.lastPageInfo = pageInfo
                     }
                     if let errors = graphQLResult.errors {
                         let message = errors

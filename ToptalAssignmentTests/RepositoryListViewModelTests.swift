@@ -50,7 +50,9 @@ let json1 = """
          "pageInfo":{
             "__typename":"",
             "endCursor":"Y3Vyc29yOnYyOpHOAF3qhg==",
-            "startCursor":"Y3Vyc29yOnYyOpHOAF3qhg=="
+            "startCursor":"Y3Vyc29yOnYyOpHOAF3qhg==",
+            "hasNextPage": true,
+            "hasPreviousPage": false
          }
       }
    }
@@ -125,28 +127,16 @@ class RepositoryListViewModelTests: XCTestCase {
     }
 
     func testSuccessfulRequestShouldCallUpdateClosure() {
-        sut.loadRepos(cursor: nil)
+        sut.fetchData()
         XCTAssertTrue(didCallUpdateClosure)
         XCTAssertFalse(didCallErrorClosure)
     }
 
     func testSuccessfulRequestShouldPopulateStore() {
         XCTAssertEqual(sut.repos.count, 0)
-        sut.loadRepos(cursor: nil)
+        sut.fetchData()
         XCTAssertEqual(sut.repos.count, 1)
-        sut.loadRepos(cursor: nil)
+        sut.fetchData()
         XCTAssertEqual(sut.repos.count, 2)
-    }
-
-    func testErrorRequestShouldCallErrorClosure() {
-        sut.loadRepos(cursor: FetchRepositoriesUseCaseMock.simulateError)
-        XCTAssertFalse(didCallUpdateClosure)
-        XCTAssertTrue(didCallErrorClosure)
-    }
-
-    func testErrorRequestShouldNotPopulateStore() {
-        XCTAssertEqual(sut.repos.count, 0)
-        sut.loadRepos(cursor: FetchRepositoriesUseCaseMock.simulateError)
-        XCTAssertEqual(sut.repos.count, 0)
     }
 }

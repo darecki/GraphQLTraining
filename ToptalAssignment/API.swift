@@ -11,7 +11,7 @@ public final class ReposQuery: GraphQLQuery {
     query Repos($cursor: String) {
       organization(login: "toptal") {
         __typename
-        repositories(first: 10, after: $cursor) {
+        repositories(first: 50, after: $cursor) {
           __typename
           totalCount
           edges {
@@ -43,6 +43,8 @@ public final class ReposQuery: GraphQLQuery {
             __typename
             endCursor
             startCursor
+            hasNextPage
+            hasPreviousPage
           }
         }
       }
@@ -51,7 +53,7 @@ public final class ReposQuery: GraphQLQuery {
 
   public let operationName: String = "Repos"
 
-  public let operationIdentifier: String? = "4e014abbd12000eb7ea76bc09a13da143f4def34e5e0d3525f5d89555512af56"
+  public let operationIdentifier: String? = "ae755dd6d13cfc4095ca8864223bbd92df029fd5fdcef94b2f021dc5350eecd2"
 
   public var cursor: String?
 
@@ -98,7 +100,7 @@ public final class ReposQuery: GraphQLQuery {
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("repositories", arguments: ["first": 10, "after": GraphQLVariable("cursor")], type: .nonNull(.object(Repository.selections))),
+          GraphQLField("repositories", arguments: ["first": 50, "after": GraphQLVariable("cursor")], type: .nonNull(.object(Repository.selections))),
         ]
       }
 
@@ -506,6 +508,8 @@ public final class ReposQuery: GraphQLQuery {
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
               GraphQLField("endCursor", type: .scalar(String.self)),
               GraphQLField("startCursor", type: .scalar(String.self)),
+              GraphQLField("hasNextPage", type: .nonNull(.scalar(Bool.self))),
+              GraphQLField("hasPreviousPage", type: .nonNull(.scalar(Bool.self))),
             ]
           }
 
@@ -515,8 +519,8 @@ public final class ReposQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(endCursor: String? = nil, startCursor: String? = nil) {
-            self.init(unsafeResultMap: ["__typename": "PageInfo", "endCursor": endCursor, "startCursor": startCursor])
+          public init(endCursor: String? = nil, startCursor: String? = nil, hasNextPage: Bool, hasPreviousPage: Bool) {
+            self.init(unsafeResultMap: ["__typename": "PageInfo", "endCursor": endCursor, "startCursor": startCursor, "hasNextPage": hasNextPage, "hasPreviousPage": hasPreviousPage])
           }
 
           public var __typename: String {
@@ -545,6 +549,26 @@ public final class ReposQuery: GraphQLQuery {
             }
             set {
               resultMap.updateValue(newValue, forKey: "startCursor")
+            }
+          }
+
+          /// When paginating forwards, are there more items?
+          public var hasNextPage: Bool {
+            get {
+              return resultMap["hasNextPage"]! as! Bool
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "hasNextPage")
+            }
+          }
+
+          /// When paginating backwards, are there more items?
+          public var hasPreviousPage: Bool {
+            get {
+              return resultMap["hasPreviousPage"]! as! Bool
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "hasPreviousPage")
             }
           }
         }
