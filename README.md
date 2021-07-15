@@ -1,4 +1,4 @@
-# GraphQL-iOS-test
+# GraphQLTraining
 
 General notes:
 1. It was my first time ever doing anything with GraphQL or Apollo. I was following this tutorial: https://www.apollographql.com/docs/ios/tutorial/tutorial-introduction/ and also used my intuition to improve the code a bit but I won't be surprised if it doesn't show the best practices.
