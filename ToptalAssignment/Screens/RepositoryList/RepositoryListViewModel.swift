@@ -27,7 +27,7 @@ final class RepositoryListViewModel {
     var didUpdate: (([Repo]) -> Void)?
     var didError: ((String) -> Void)?
 
-    private func loadRepos(cursor: String?) {
+    func loadRepos(cursor: String?) {
         fetchRepositoriesUseCase
             .fetch(cursor: cursor) { [weak self] result in
                 guard let self = self else { return }
