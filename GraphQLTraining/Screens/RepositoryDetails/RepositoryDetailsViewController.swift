@@ -56,6 +56,7 @@ final class RepositoryDetailsViewController: UIViewController {
         stackView.addArrangedSubview(makeLabel("Closed issues: \(repo.closedIssues.totalCount)"))
         stackView.addArrangedSubview(makeLabel("Open pull requests: \(repo.openPullRequests.totalCount)"))
         stackView.addArrangedSubview(makeLabel("Closed pull requests: \(repo.closedPullRequests.totalCount)"))
+        stackView.addArrangedSubview(makeLabel("Closed+merged pull requests: \(repo.closedPullRequests.totalCount + repo.mergedPullRequests.totalCount)"))
         view.backgroundColor = .white
     }
 }

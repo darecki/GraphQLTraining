@@ -19,6 +19,9 @@ query Repos($cursor: String) {
           closedPullRequests: pullRequests(first: 1, states: CLOSED) {
             totalCount
           }
+          mergedPullRequests: pullRequests(first: 1, states: MERGED) {
+            totalCount
+          }
         }
       }
       pageInfo {

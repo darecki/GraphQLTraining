@@ -43,6 +43,10 @@ let json1 = """
                   "closedPullRequests":{
                      "__typename":"",
                      "totalCount":2
+                  },
+                  "mergedPullRequests":{
+                     "__typename":"",
+                     "totalCount":2
                   }
                }
             }
